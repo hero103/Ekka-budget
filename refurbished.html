@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refurbished Laptops Under ₹30,000 - EkkaBudget</title>
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        /* Navigation */
+        nav {
+            background-color: #1d3a8a;
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .site-name {
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        /* Menu button (hamburger) */
+        .menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .nav-links {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: #3b82f6;
+        }
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        h1 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 2.2rem;
+        }
+        .intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.1rem;
+            color: #4b5563;
+        }
+        /* Product grid – compact like e‑commerce */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            background-color: #f1f5f9;
+            display: block;
+            padding: 0.5rem;
+        }
+        .product-info {
+            padding: 0.8rem 0.8rem 1rem;
+        }
+        .product-name {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            line-height: 1.3;
+            height: 2.6rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .product-specs {
+            color: #4b5563;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+        .badge-condition {
+            display: inline-block;
+            background-color: #10b981;
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            margin-bottom: 0.5rem;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #10b981;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #059669;
+        }
+        .benefits {
+            background-color: #d1fae5;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .benefits h3 {
+            color: #065f46;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .benefits p {
+            font-size: 1rem;
+            color: #064e3b;
+        }
+        .footer {
+            background-color: #1e293b;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        .footer-links {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 1.2rem;
+        }
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+        .footer p {
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+        /* Responsive: hamburger menu */
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #1d3a8a;
+                padding: 1rem 0;
+                margin-top: 1rem;
+                border-radius: 12px;
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .nav-links a {
+                white-space: normal;
+                text-align: center;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            .intro {
+                font-size: 0.95rem;
+            }
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            .product-name {
+                font-size: 0.9rem;
+                height: 2.4rem;
+            }
+            .product-specs {
+                font-size: 0.7rem;
+            }
+            .product-price {
+                font-size: 1rem;
+            }
+            .btn {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.5rem;
+            }
+            .benefits {
+                padding: 1.5rem 1rem;
+            }
+            .benefits h3 {
+                font-size: 1.3rem;
+            }
+            .benefits p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="site-name">BudgetByte by Ajay</a>
+            <button class="menu-btn" id="menuToggle" aria-label="Menu">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="new-laptops.html">New Laptops</a>
+                <a href="refurbished.html" class="active">Refurbished</a>
+                <a href="amazon-games.html">Amazon Games</a>
+                <a href="clothing.html">Clothing Deals</a>
+                <a href="luxury-beauty.html">Luxury Beauty</a>
+                <a href="categories.html">All Categories</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Best Refurbished Laptops Under ₹30,000</h1>
+        <p class="intro">Refurbished laptops offer incredible value – often like-new performance at half the price. All our picks come with a solid warranty and have been tested for quality.</p>
+
+        <div class="grid">
+            <!-- Card 1 -->
+            <div class="product-card">
+                <img class="product-image" src="images/thinkpadx1-main.png" alt="ThinkPad X1 Carbon" onerror="this.src='https://via.placeholder.com/300x300?text=ThinkPad+X1'">
+                <div class="product-info">
+                    <span class="badge-condition">Excellent</span>
+                    <div class="product-name">ThinkPad X1 Carbon</div>
+                    <div class="product-specs">i7 · 16GB · 256GB SSD</div>
+                    <div class="product-price">₹27,980</div>
+                    <a href="product.html?id=ThinkPad-X1-Carbon" class="btn">Buy Now</a>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="product-card">
+                <img class="product-image" src="images/thinkpadt14-keyboard.png" alt="ThinkPad T14 Gen 1" onerror="this.src='https://via.placeholder.com/300x300?text=ThinkPad+T14'">
+                <div class="product-info">
+                    <span class="badge-condition">Very Good</span>
+                    <div class="product-name">ThinkPad T14 Gen 1</div>
+                    <div class="product-specs">i5/i7 · 16GB · 512GB SSD</div>
+                    <div class="product-price">₹24,670</div>
+                    <a href="product.html?id=thinkpad-t14-gen-1" class="btn">Buy Now</a>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="product-card">
+                <img class="product-image" src="images/hp754-main.png" alt="HP EliteBook 745 G6" onerror="this.src='https://via.placeholder.com/300x300?text=HP+EliteBook'">
+                <div class="product-info">
+                    <span class="badge-condition">Excellent</span>
+                    <div class="product-name">HP EliteBook 745 G6</div>
+                    <div class="product-specs">i5 · 8GB · 256GB SSD</div>
+                    <div class="product-price">₹24,999</div>
+                    <a href="product.html?id=HP-EliteBook-745-G6" class="btn">Buy Now</a>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="product-card">
+                <img class="product-image" src="images/MacBook-main.png" alt="MacBook Air 2017" onerror="this.src='https://via.placeholder.com/300x300?text=MacBook+Air'">
+                <div class="product-info">
+                    <span class="badge-condition">Good</span>
+                    <div class="product-name">MacBook Air (2017)</div>
+                    <div class="product-specs">i5 · 8GB · 128GB SSD</div>
+                    <div class="product-price">₹18,670</div>
+                    <a href="product.html?id=MacBook-Air-2017" class="btn">Buy Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits">
+            <h3>Why Buy Refurbished?</h3>
+            <p>Refurbished laptops are professionally restored, tested, and often come with a warranty. You get premium build quality and performance for a fraction of the original price – and you're helping reduce e-waste!</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="new-laptops.html">New Laptops</a>
+                <a href="refurbished.html">Refurbished</a>
+                <a href="clothing.html">Clothing</a>
+                <a href="luxury-beauty.html">Luxury Beauty</a>
+                <a href="categories.html">Categories</a>
+                <a href="categories.html">About me</a>
+            </div>
+            <p>As an Amazon Associate I earn from qualifying purchases. Prices and availability are subject to change.</p>
+            <p>&copy; 2026 EkkaBudget. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

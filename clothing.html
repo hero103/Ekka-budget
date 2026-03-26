@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Deals Under ₹1,000 - EkkaBudget</title>
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #fdf2f8;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        /* Navigation */
+        nav {
+            background-color: #1d3a8a;
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .site-name {
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        /* Menu button (hamburger) */
+        .menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .nav-links {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: #3b82f6;
+        }
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        h1 {
+            color: #be185d;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 2.2rem;
+        }
+        .intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.1rem;
+            color: #4b5563;
+        }
+        /* Product grid – compact like e‑commerce */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            background-color: #fbcfe8;
+            display: block;
+            padding: 0.5rem;
+        }
+        .product-info {
+            padding: 0.8rem 0.8rem 1rem;
+        }
+        .product-name {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            line-height: 1.3;
+            height: 2.6rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #be185d;
+            margin-bottom: 0.5rem;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #be185d;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #831843;
+        }
+        .footer {
+            background-color: #1e293b;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        .footer-links {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 1.2rem;
+        }
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+        .footer p {
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+        /* Responsive: hamburger menu */
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #1d3a8a;
+                padding: 1rem 0;
+                margin-top: 1rem;
+                border-radius: 12px;
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .nav-links a {
+                white-space: normal;
+                text-align: center;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            .intro {
+                font-size: 0.95rem;
+            }
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            .product-name {
+                font-size: 0.9rem;
+                height: 2.4rem;
+            }
+            .product-price {
+                font-size: 1rem;
+            }
+            .btn {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="site-name">Ekka Trends</a>
+            <button class="menu-btn" id="menuToggle" aria-label="Menu">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="new-laptops.html">New Laptops</a>
+                <a href="refurbished.html">Refurbished</a>
+                <a href="amazon-games.html">Amazon Games</a>
+                <a href="clothing.html" class="active">Clothing Deals</a>
+                <a href="luxury-beauty.html">Luxury Beauty</a>
+                <a href="categories.html">All Categories</a>
+                <a href="about.html">About me</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Fashion Finds Under ₹1,000</h1>
+        <p class="intro">Looking good doesn't have to cost a fortune. Check out these stylish picks all under ₹1,000.</p>
+
+        <div class="grid">
+            <!-- Item 1 -->
+            <div class="product-card">
+                <img class="product-image" src="images/girlfit-side.jpg" alt="Girl Slim Fit Shirt" onerror="this.src='https://via.placeholder.com/300x300?text=Girl+Shirt'">
+                <div class="product-info">
+                    <div class="product-name">Girl Slim Fit Shirt</div>
+                    <div class="product-price">₹925</div>
+                    <a href="product.html?id=Girl-Slim-Fit-Shirt" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="product-card">
+                <img class="product-image" src="images/menfit.png" alt="Slim Fit Shirt" onerror="this.src='https://via.placeholder.com/300x300?text=Slim+Fit+Shirt'">
+                <div class="product-info">
+                    <div class="product-name">Slim Fit Shirt</div>
+                    <div class="product-price">₹730</div>
+                    <a href="product.html?id=Slim-Fit-Shirt" class="btn">Shop Now</a>
+                </div> 
+            </div>
+            <!-- Item 3 -->
+            <div class="product-card">
+                <img class="product-image" src="images/boyshirt-main.png" alt="Graphic T-Shirt" onerror="this.src='https://via.placeholder.com/300x300?text=Graphic+T-Shirt'">
+                <div class="product-info">
+                    <div class="product-name">Graphic T-Shirt</div>
+                    <div class="product-price">₹915</div>
+                    <a href="product.html?id=Graphic-T-Shirt" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="product-card">
+                <img class="product-image" src="images/Men's Casual Hoodie-key.png" alt="Lightweight Jacket" onerror="this.src='https://via.placeholder.com/300x300?text=Lightweight+Jacket'">
+                <div class="product-info">
+                    <div class="product-name">Lightweight Jacket</div>
+                    <div class="product-price">₹730</div>
+                    <a href="product.html?id=Lightweight-Jacket" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Item 5 -->
+            <div class="product-card">
+                <img class="product-image" src="images/boyshirt-in.png" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">Running Shoes</div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+             <!-- Item 6 -->
+              <div class="product-card">
+                <img class="product-image" src="clothing/girlcasual-main.jpg" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">girl casual</div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <!-- Item 7 -->
+              <div class="product-card">
+                <img class="product-image" src="clothing/girlcasual1-main.jpg" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">Running Shoes</div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+              <div class="product-card">
+                <img class="product-image" src="clothing/mancasual-main.jpg" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">mancasual </div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+              <div class="product-card">
+                <img class="product-image" src="clothing/mancasual2-main.jpg" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">mancasual1</div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+              <div class="product-card">
+                <img class="product-image" src="clothing/mancasual3-main.jpg" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">mancasual2</div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+              <div class="product-card">
+                <img class="product-image" src="clothing/mancasual4-main.jpg" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">mancasual3</div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+              <div class="product-card">
+                <img class="product-image" src="clothing/mancasual5-main.jpg" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">mancasual4</div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+              <div class="product-card">
+                <img class="product-image" src="clothing/mancasual6-main.webp" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">mancasual5</div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+              <div class="product-card">
+                <img class="product-image" src="clothing/mancasual7-main.jpg" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">mancasual6</div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+              <div class="product-card">
+                <img class="product-image" src="clothing/mancasual8-main.jpg" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">mancasual7</div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+              <div class="product-card">
+                <img class="product-image" src="clothing/maincasual9-main.jpg" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">mancasual8</div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+              <div class="product-card">
+                <img class="product-image" src="clothing/mancasual0-main.jpg" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">mancasual9</div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+              <div class="product-card">
+                <img class="product-image" src="clothing/mancasual11-main.jpg" alt="Running Shoes" onerror="this.src='https://via.placeholder.com/300x300?text=Running+Shoes'">
+                <div class="product-info">
+                    <div class="product-name">mancasual0</div>
+                    <div class="product-price">₹428</div>
+                    <a href="product.html?id=Running-Shoes" class="btn">Shop Now</a>
+                </div>
+            </div>
+            
+            <!-- Item 7 -->
+            <div class="product-card">
+                <img class="product-image" src="clothing/mancasual12-main.jpg" alt="Baseball Cap" onerror="this.src='https://via.placeholder.com/300x300?text=Baseball+Cap'">
+                <div class="product-info">
+                    <div class="product-name">mancasual11</div>
+                    <div class="product-price">₹499</div>
+                    <a href="product.html?id=Baseball-Cap" class="btn">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="new-laptops.html">New Laptops</a>
+                <a href="refurbished.html">Refurbished</a>
+                <a href="clothing.html">Clothing</a>
+                <a href="luxury-beauty.html">Luxury Beauty</a>
+                <a href="categories.html">Categories</a>
+                <a href="categories.html">About me</a>
+            </div>
+            <p>As an Amazon Associate I earn from qualifying purchases. Prices and availability are subject to change.</p>
+            <p>&copy; 2026 EkkaBudget. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

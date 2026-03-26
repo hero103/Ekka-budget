@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acer Aspire 5 Review – EkkaBudget</title>
+    <style>
+        /* === Complete styles for the review page (no external files) === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        }
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #ffffff 100%);
+            color: #1e293b;
+            line-height: 1.5;
+            min-height: 100vh;
+            perspective: 1200px;
+        }
+        /* Navigation – glass effect */
+        nav {
+            background: rgba(20, 40, 80, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 10px 30px -10px rgba(0,20,40,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .site-name {
+            color: white;
+            text-decoration: none;
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        .site-name:hover {
+            transform: scale(1.02);
+        }
+        .menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            transition: all 0.2s;
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.4);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,30,60,0.3);
+        }
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgba(20,40,80,0.9);
+                backdrop-filter: blur(12px);
+                padding: 1rem 0;
+                margin-top: 1rem;
+                border-radius: 28px;
+                border: 1px solid rgba(255,255,255,0.15);
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .nav-links a {
+                text-align: center;
+                white-space: normal;
+                margin: 0.2rem 1rem;
+            }
+        }
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        /* Review Hero */
+        .review-hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+            margin: 2rem 0 3rem;
+            background: rgba(255,255,255,0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 48px;
+            padding: 2.5rem;
+            box-shadow: 0 30px 40px -20px rgba(0,20,40,0.2),
+                        inset 0 2px 4px rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.6);
+            transform: translateZ(10px);
+        }
+        .review-hero-image {
+            flex: 1 1 280px;
+            text-align: center;
+        }
+        .product-img {
+            width: 100%;
+            max-width: 280px;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+            background: linear-gradient(145deg, #f9f9fc, #eef2f6);
+            border-radius: 28px;
+            padding: 1rem;
+            box-shadow: 0 25px 40px -10px rgba(0,30,70,0.3);
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: transform 0.3s;
+        }
+        .product-img:hover {
+            transform: scale(1.02) translateZ(20px);
+        }
+        .review-hero-text {
+            flex: 2 1 400px;
+        }
+        .review-hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #0f2b5e;
+            margin-bottom: 0.5rem;
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .stars {
+            color: #fbbf24;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+        }
+        .rating-value {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2563eb;
+        }
+        .verdict-badge {
+            display: inline-block;
+            background: linear-gradient(145deg, #10b981, #059669);
+            color: white;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 6px 12px rgba(5,150,105,0.3);
+            margin-top: 1rem;
+        }
+        /* Key specs card */
+        .specs-card {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0 3rem;
+            box-shadow: 0 25px 40px -15px rgba(0,20,50,0.15);
+            border: 1px solid rgba(255,255,255,0.8);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+        .spec-item {
+            flex: 1 1 150px;
+        }
+        .spec-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .spec-value {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0f2b5e;
+            margin-top: 0.2rem;
+        }
+        /* Section styling */
+        .review-section {
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(6px);
+            border-radius: 36px;
+            padding: 2rem 2.2rem;
+            margin: 2.5rem 0;
+            box-shadow: 0 20px 30px -10px rgba(0,20,50,0.1),
+                        inset 0 1px 2px rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.7);
+        }
+        .review-section h2 {
+            font-size: 2rem;
+            color: #0f2b5e;
+            margin-bottom: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+        .review-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            border-radius: 2px;
+        }
+        .review-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #334155;
+        }
+        /* Pros & Cons */
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .pros-box, .cons-box {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 28px;
+            padding: 1.8rem;
+            box-shadow: 0 15px 25px -8px rgba(0,20,50,0.1);
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+        .pros-box h3, .cons-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .pros-box h3 { color: #10b981; }
+        .cons-box h3 { color: #ef4444; }
+        .pros-box ul, .cons-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        .pros-box li, .cons-box li {
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .pros-box li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        .cons-box li::before {
+            content: "✗";
+            color: #ef4444;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        /* Rating breakdown */
+        .rating-breakdown {
+            margin: 2rem 0;
+        }
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        .rating-label {
+            width: 100px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        .rating-bar {
+            flex: 1;
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .rating-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            border-radius: 20px;
+            width: 0%; /* will be set inline */
+        }
+        .rating-score {
+            width: 40px;
+            font-weight: 700;
+            color: #0f2b5e;
+        }
+        /* Call to action */
+        .cta-box {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            padding: 2.5rem;
+            background: linear-gradient(145deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1));
+            border-radius: 48px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        .cta-box h3 {
+            font-size: 2rem;
+            color: #0f2b5e;
+            margin-bottom: 1rem;
+        }
+        .cta-box .btn {
+            display: inline-block;
+            background: linear-gradient(145deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 0 #0f2b5e, 0 10px 25px rgba(0,30,70,0.4);
+            transform: translateY(-3px);
+            transition: all 0.2s;
+            margin-top: 1rem;
+        }
+        .cta-box .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 0 #0f2b5e, 0 15px 30px rgba(0,30,70,0.4);
+        }
+        .cta-box .btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 4px 0 #0f2b5e, 0 10px 20px rgba(0,30,70,0.3);
+        }
+        /* Footer */
+        .footer {
+            background: rgba(15, 30, 45, 0.9);
+            backdrop-filter: blur(8px);
+            color: white;
+            padding: 2.5rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 -10px 30px -15px rgba(0,0,0,0.3);
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+        .footer-links {
+            margin-bottom: 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 2rem;
+        }
+        .footer-links a {
+            color: #b0c4de;
+            text-decoration: none;
+            transition: 0.2s;
+            font-weight: 500;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid transparent;
+        }
+        .footer-links a:hover {
+            color: white;
+            border-bottom-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+        .footer p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .review-hero h1 {
+                font-size: 2.2rem;
+            }
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+            .specs-card {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .review-hero {
+                padding: 1.5rem;
+            }
+            .review-hero h1 {
+                font-size: 1.8rem;
+            }
+            .stars {
+                font-size: 1.5rem;
+            }
+            .review-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="site-name">EkkaBudget</a>
+            <button class="menu-btn" id="menuToggle" aria-label="Menu">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="new-laptops.html">New Laptops</a>
+                <a href="refurbished.html">Refurbished</a>
+                <a href="amazon-games.html">Amazon Games</a>
+                <a href="clothing.html">Clothing Deals</a>
+                <a href="luxury-beauty.html">Luxury Beauty</a>
+                <a href="categories.html">All Categories</a>
+                <a href="about.html">About Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Review Hero -->
+        <div class="review-hero">
+            <div class="review-hero-image">
+                <img src="12.jpg" alt="Acer Aspire 5" class="product-img" onerror="this.src='https://via.placeholder.com/300x300?text=Acer+Aspire+5'">
+            </div>
+            <div class="review-hero-text">
+                <h1>Acer Aspire 5</h1>
+                <div class="rating">
+                    <span class="stars">★★★★½</span>
+                    <span class="rating-value">4.5/5</span>
+                </div>
+                <p class="verdict-badge">Editors' Choice – Best Budget Laptop</p>
+                <p style="margin-top: 1.2rem; font-size: 1.2rem;">The Acer Aspire 5 delivers exceptional value with solid performance, a decent display, and great battery life – all at an affordable price.</p>
+            </div>
+        </div>
+
+        <!-- Key Specifications -->
+        <div class="specs-card">
+            <div class="spec-item">
+                <div class="spec-label">Processor</div>
+                <div class="spec-value">AMD Ryzen 5 5500U</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">RAM</div>
+                <div class="spec-value">8GB DDR4</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Storage</div>
+                <div class="spec-value">256GB NVMe SSD</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Display</div>
+                <div class="spec-value">15.6" FHD IPS</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Battery</div>
+                <div class="spec-value">Up to 8 hours</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Weight</div>
+                <div class="spec-value">1.8 kg</div>
+            </div>
+        </div>
+
+        <!-- Design Section -->
+        <section class="review-section">
+            <h2>Design & Build</h2>
+            <p>The Aspire 5 features a subtle, professional design with a silver aluminum lid and plastic base. It feels sturdy for its price, with minimal flex. The 15.6-inch chassis is reasonably portable, and the hinge allows a 180° lay‑flat. Port selection is generous: USB‑C, HDMI, Ethernet, and three USB‑A ports.</p>
+        </section>
+
+        <!-- Performance Section -->
+        <section class="review-section">
+            <h2>Performance</h2>
+            <p>Equipped with the Ryzen 5 5500U (6 cores/12 threads), this laptop handles everyday tasks, office work, and even light photo editing with ease. The 8GB RAM is sufficient for most users, but the single channel limits performance a bit. The 256GB SSD is fast, though you may want to upgrade storage later.</p>
+        </section>
+
+        <!-- Display & Audio Section -->
+        <section class="review-section">
+            <h2>Display & Audio</h2>
+            <p>The 15.6" Full HD IPS panel is bright (250 nits) and offers good viewing angles. Colors are accurate enough for media consumption and productivity. The bezels are thin on the sides, giving a modern look. Speakers are downward‑firing and get reasonably loud, but lack bass – fine for video calls and casual use.</p>
+        </section>
+
+        <!-- Battery Life -->
+        <section class="review-section">
+            <h2>Battery Life</h2>
+            <p>With a 50Wh battery, the Aspire 5 lasts around 7‑8 hours of mixed usage (web browsing, video streaming, documents). Charging is via the included 65W adapter, which gets you to 50% in about an hour.</p>
+        </section>
+
+        <!-- Pros & Cons -->
+        <div class="pros-cons">
+            <div class="pros-box">
+                <h3>✅ Pros</h3>
+                <ul>
+                    <li>Excellent price‑to‑performance ratio</li>
+                    <li>Good port selection</li>
+                    <li>Decent Full HD IPS display</li>
+                    <li>Solid build for the price</li>
+                </ul>
+            </div>
+            <div class="cons-box">
+                <h3>❌ Cons</h3>
+                <ul>
+                    <li>Single‑channel RAM limits performance</li>
+                    <li>Mediocre speakers</li>
+                    <li>Plastic lid (only keyboard deck is metal)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Rating Breakdown -->
+        <section class="review-section">
+            <h2>Detailed Ratings</h2>
+            <div class="rating-breakdown">
+                <div class="rating-row">
+                    <span class="rating-label">Design</span>
+                    <div class="rating-bar"><div class="rating-fill" style="width:80%"></div></div>
+                    <span class="rating-score">4.0</span>
+                </div>
+                <div class="rating-row">
+                    <span class="rating-label">Performance</span>
+                    <div class="rating-bar"><div class="rating-fill" style="width:85%"></div></div>
+                    <span class="rating-score">4.3</span>
+                </div>
+                <div class="rating-row">
+                    <span class="rating-label">Display</span>
+                    <div class="rating-bar"><div class="rating-fill" style="width:80%"></div></div>
+                    <span class="rating-score">4.0</span>
+                </div>
+                <div class="rating-row">
+                    <span class="rating-label">Battery</span>
+                    <div class="rating-bar"><div class="rating-fill" style="width:85%"></div></div>
+                    <span class="rating-score">4.2</span>
+                </div>
+                <div class="rating-row">
+                    <span class="rating-label">Value</span>
+                    <div class="rating-bar"><div class="rating-fill" style="width:95%"></div></div>
+                    <span class="rating-score">4.8</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Verdict -->
+        <section class="review-section">
+            <h2>Final Verdict</h2>
+            <p>The Acer Aspire 5 remains one of the best budget laptops you can buy in 2026. It offers a great balance of performance, features, and build quality at a price that's hard to beat. If you're a student, a professional on a budget, or someone who needs a reliable everyday laptop, the Aspire 5 should be at the top of your list.</p>
+        </section>
+
+        <!-- Call to Action -->
+        <div class="cta-box">
+            <h3>Ready to buy?</h3>
+            <p>Check the latest price on Amazon – prices change frequently!</p>
+            <a href="https://amazon.in/dp/XXXXXX" class="btn" target="_blank">View Best Price on Amazon →</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="new-laptops.html">New Laptops</a>
+                <a href="refurbished.html">Refurbished</a>
+                <a href="clothing.html">Clothing</a>
+                <a href="luxury-beauty.html">Luxury Beauty</a>
+                <a href="categories.html">Categories</a>
+                <a href="about.html">About Me</a>
+            </div>
+            <p>As an Amazon Associate I earn from qualifying purchases. Prices and availability are subject to change.</p>
+            <p>&copy; 2026 BudgetLaptopGuru. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle (self-contained)
+        const menuBtn = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        if (menuBtn && navLinks) {
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('show');
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

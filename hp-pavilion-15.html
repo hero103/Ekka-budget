@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HP Pavilion 15 - BudgetTechGuru</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        nav {
+            background-color: #1e3a8a;
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .site-name {
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: background-color 0.3s;
+        }
+        .nav-links a:hover {
+            background-color: #2563eb;
+        }
+        .nav-links a.active {
+            background-color: #3b82f6;
+            font-weight: 600;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        /* Product detail layout */
+        .product-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        /* Gallery */
+        .gallery {
+            display: flex;
+            flex-direction: column;
+        }
+        .main-image {
+            width: 100%;
+            height: 350px;
+            object-fit: contain;
+            background: #f1f5f9;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            padding: 1rem;
+        }
+        .thumbnail-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border 0.2s;
+        }
+        .thumbnail:hover {
+            border-color: #3b82f6;
+        }
+        .thumbnail.selected {
+            border-color: #1e3a8a;
+        }
+        /* Product info */
+        .product-info h1 {
+            font-size: 2.2rem;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin: 1rem 0;
+        }
+        .specs {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+        .specs h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        .specs ul {
+            list-style: none;
+        }
+        .specs li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+        }
+        .specs li span:first-child {
+            width: 120px;
+            font-weight: 600;
+        }
+        .description {
+            color: #4b5563;
+            margin: 1.5rem 0;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #3b82f6;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #1e3a8a;
+        }
+        .footer {
+            background-color: #1e293b;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        .footer-links {
+            margin-bottom: 1.5rem;
+        }
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+        .footer p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .product-detail {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="site-name">BudgetTechGuru</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="new-laptops.html">New Laptops</a>
+                <a href="refurbished.html">Refurbished</a>
+                <a href="clothing.html">Clothing Deals</a>
+                <a href="categories.html">All Categories</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="product-detail">
+            <!-- Left: Gallery -->
+            <div class="gallery">
+                <img id="mainImage" class="main-image" src="hp-main.jpg" alt="HP Pavilion 15">
+                <div class="thumbnail-container">
+                    <img class="thumbnail selected" src="hp-main.jpg" alt="HP Pavilion 15 - front" onclick="changeImage('hp-main.jpg')">
+                    <img class="thumbnail" src="hp-side.jpg" alt="HP Pavilion 15 - side" onclick="changeImage('hp-side.jpg')">
+                    <img class="thumbnail" src="hp-keyboard.jpg" alt="HP Pavilion 15 - keyboard" onclick="changeImage('hp-keyboard.jpg')">
+                </div>
+            </div>
+            <!-- Right: Details -->
+            <div class="product-info">
+                <h1>HP Pavilion 15</h1>
+                <div class="price">$499</div>
+                <div class="specs">
+                    <h3>Key Specifications</h3>
+                    <ul>
+                        <li><span>Processor</span> Intel Core i5-1235U</li>
+                        <li><span>RAM</span> 8GB DDR4</li>
+                        <li><span>Storage</span> 512GB SSD</li>
+                        <li><span>Display</span> 15.6" FHD IPS</li>
+                        <li><span>Graphics</span> Intel Iris Xe</li>
+                        <li><span>Battery</span> Up to 8 hours</li>
+                        <li><span>Weight</span> 3.8 lbs</li>
+                    </ul>
+                </div>
+                <div class="description">
+                    <h3>Description</h3>
+                    <p>The HP Pavilion 15 is a versatile laptop perfect for students and professionals. With its 12th Gen Intel Core i5 processor and 512GB SSD, it handles everyday tasks and multitasking with ease. The 15.6" Full HD display delivers crisp visuals, and the lightweight design makes it easy to carry.</p>
+                </div>
+                <a href="#" class="btn">Check Price on Amazon</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="new-laptops.html">New Laptops</a>
+                <a href="refurbished.html">Refurbished</a>
+                <a href="clothing.html">Clothing</a>
+                <a href="categories.html">Categories</a>
+            </div>
+            <p>As an Amazon Associate I earn from qualifying purchases. Prices and availability are subject to change.</p>
+            <p>&copy; 2025 BudgetTechGuru. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function changeImage(src) {
+            document.getElementById('mainImage').src = src;
+            // Update selected thumbnail style
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('selected');
+                if (thumb.src.includes(src)) {
+                    thumb.classList.add('selected');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
