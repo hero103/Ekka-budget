@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekka's Amazon/Flipkart Picks – Honest Laptop Reviews</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #faf9f7 0%, #f1f3f7 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation – soft glass effect */
+        nav {
+            background: rgba(44, 62, 80, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .site-name {
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: opacity 0.2s;
+        }
+        .site-name:hover {
+            opacity: 0.9;
+        }
+
+        .menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            transition: all 0.2s;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero – calming gradient with soft glow */
+        .hero {
+            background: linear-gradient(135deg, #2c7a6e, #3b82b6);
+            position: relative;
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 32px;
+            text-align: center;
+            margin-bottom: 3rem;
+            overflow: hidden;
+            box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(30px);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0.5rem auto;
+        }
+
+        /* Section title */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #3b82b6;
+            margin: 0.8rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Product grid – clean cards */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            background: #f8fafc;
+            display: block;
+            padding: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.02);
+        }
+
+        .product-info {
+            padding: 1rem 1rem 1.2rem;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #1f3a4b;
+            line-height: 1.3;
+            height: 2.6rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-specs {
+            color: #5a6e7a;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c7a6e;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Buttons – refined */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(145deg, #2c7a6e, #1f5a4f);
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border: none;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .btn:hover {
+            background: linear-gradient(145deg, #1f5a4f, #14453c);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        /* How we test – soft panel */
+        .how-we-test {
+            background: #ffffffcc;
+            backdrop-filter: blur(8px);
+            padding: 2.5rem 2rem;
+            border-radius: 32px;
+            margin: 3rem 0;
+            box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .how-we-test h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .how-we-test p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Footer – clean */
+        .footer {
+            background: #1e2a36;
+            color: #cbd5e1;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid #334155;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 1.8rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: 0.2s;
+            font-weight: 500;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid transparent;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            border-bottom-color: #3b82b6;
+        }
+
+        .footer p {
+            color: #6c7a8a;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgba(44, 62, 80, 0.95);
+                backdrop-filter: blur(12px);
+                padding: 1rem 0;
+                margin-top: 1rem;
+                border-radius: 24px;
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .nav-links a {
+                text-align: center;
+                margin: 0.3rem 1rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .featured-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .product-info {
+                padding: 0.8rem;
+            }
+            .product-name {
+                font-size: 0.85rem;
+                height: 2.2rem;
+            }
+            .product-specs {
+                font-size: 0.7rem;
+            }
+            .product-price {
+                font-size: 1rem;
+            }
+            .btn {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.2rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 0.9rem;
+            }
+            .how-we-test {
+                padding: 1.5rem 1rem;
+            }
+            .how-we-test h2 {
+                font-size: 1.4rem;
+            }
+            .how-we-test p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="site-name">Ekka's Amazon/Flipkart Picks</a>
+            <button class="menu-btn" id="menuToggle" aria-label="Menu">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="active">Home</a>
+                <a href="new-laptops.html">New Laptops</a>
+                <a href="refurbished.html">Refurbished</a>
+                <a href="amazon-games.html">Amazon Games</a>
+                <a href="clothing.html">Clothing Deals</a>
+                <a href="luxury-beauty.html">Luxury Beauty</a>
+                <a href="categories.html">All Categories</a>
+                <a href="about.html">About me</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="hero">
+            <h1>Find Your Perfect Budget Laptop in 2026</h1>
+            <p>Your safety is our first step</p>
+            <p>We test and review the best laptops under ₹50,000 so you don't have to.</p>
+        </div>
+
+        <h2 class="section-title">Featured Picks</h2>
+        <div class="featured-grid">
+            <!-- Product Card 1 -->
+            <div class="product-card">
+                <img class="product-image" src="12.jpg" alt="Acer Aspire 5" onerror="this.src='https://via.placeholder.com/300x300?text=Acer+Aspire+5'">
+                <div class="product-info">
+                    <div class="product-name">Acer Aspire 5</div>
+                    <div class="product-specs">Ryzen 5 · 8GB · 256GB SSD</div>
+                    <div class="product-price">₹49,849</div>
+                    <a href="review.html?id=acer-aspire-5" class="btn">Read Review</a>
+                </div>
+            </div>
+            <!-- Product Card 2 -->
+            <div class="product-card">
+                <img class="product-image" src="hp-main.jpg" alt="HP Pavilion 15" onerror="this.src='https://via.placeholder.com/300x300?text=HP+Pavilion+15'">
+                <div class="product-info">
+                    <div class="product-name">HP Pavilion 15</div>
+                    <div class="product-specs">i5 · 8GB · 512GB SSD</div>
+                    <div class="product-price">₹49,999</div>
+                    <a href="product.html?id=HP-Pavilion-15" class="btn">Buy Now</a>
+                </div>
+            </div>
+            <!-- Product Card 3 -->
+            <div class="product-card">
+                <img class="product-image" src="images/lenovo-main.jpg" alt="Acer Aspire 3" onerror="this.src='https://via.placeholder.com/300x300?text=Acer+Aspire+3'">
+                <div class="product-info">
+                    <div class="product-name">Acer Aspire 3</div>
+                    <div class="product-specs">i3-1305U · 8GB · 512GB SSD</div>
+                    <div class="product-price">₹38,999</div>
+                    <a href="product.html?id=acer-aspire-3" class="btn">Buy Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="how-we-test">
+            <h2>How We Test</h2>
+            <p>We spend 6+ hours researching and hands‑on testing every laptop we recommend. Our reviews focus on performance, build quality, battery life, and real‑world value – so you can buy with confidence.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="new-laptops.html">New Laptops</a>
+                <a href="refurbished.html">Refurbished</a>
+                <a href="clothing.html">Clothing</a>
+                <a href="luxury-beauty.html">Luxury Beauty</a>
+                <a href="categories.html">Categories</a>
+                <a href="about.html">About me</a>
+            </div>
+            <p>As an Amazon Associate I earn from qualifying purchases. Prices and availability are subject to change.</p>
+            <p>&copy; 2026 Ekka's Picks. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        if (menuBtn && navLinks) {
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('show');
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
